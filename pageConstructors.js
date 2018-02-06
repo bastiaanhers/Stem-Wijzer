@@ -1,5 +1,4 @@
 function statementShow(){
-
      //text van statement plaatsen
      var title = document.createElement("h1");
      var titleNode = document.createTextNode(subjects[pageCount].title);
@@ -13,9 +12,20 @@ function statementShow(){
  
 }
 
-function buttonShow(data){
+function resultPageShow(){
 
-    options.forEach(option => {
+
+}
+
+function opinionShow(){
+    subjects[pageCount].parties.forEach(option => {
+        console.log(option);
+    });
+}
+
+
+//build the buttons
+function buttonShow(option){
         var button = document.createElement("button");
         var Node = document.createTextNode(option);
         button.setAttribute("class", "w3-button w3-teal w3-margin");
@@ -23,18 +33,14 @@ function buttonShow(data){
         button.choice = option;
         button.appendChild(Node);
         page.appendChild(button);
-    });
+
 }
 
 function backButtonShow(pageCount){
-
-    if(pageCount >= 1){
         var button = document.createElement("button");
         var node = document.createTextNode("terug");
         button.setAttribute("class", "w3-button w3-grey w3");
-        button.onclick = clicked;
-        button.choice = "back";
+        button.setAttribute("onclick", "back()");
         button. appendChild(node);
         page.appendChild(button);
-    }
 }
