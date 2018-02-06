@@ -25,7 +25,6 @@ function buildStatement(){
     });
     opinionShow();
 }
-
 function back(){
     pageCount--;
     buildStatement();
