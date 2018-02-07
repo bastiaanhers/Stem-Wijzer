@@ -16,48 +16,62 @@ function resultPageShow(){
 
 
 }
+function skippedShow(){
+    
+
+}
 
 function opinionShow(){
+    var div = document.createElement("div");
+    div.setAttribute("style", "display: flex; height: 400px; overflow: auto;" );
 
-    for(var i = 1; i < 4; i++){
-        var pos = document.createElement("table");
-        pos.setAttribute("class", "w3-table-all w3-light-grey pos");
-        pos.setAttribute("id", "position".concat(i));
-        page.appendChild(pos);
-         
+    page.appendChild(div);
+
+    for(var i = 1; i < 3; i++){
+        var card = document.createElement("div");
+        card.setAttribute("class","w3-card-4 w3-light-grey")
+        card.setAttribute("id", "position".concat(i));
+
+        var table = document.createElement("table");
+        table.setAttribute("class", "w3-table-all")
+        var tr = document.createElement("tr");
+
+        var thName = document.createElement("th");
+        var node1 = document.createTextNode("naam");
+        thName.style.cssText = "padding-left: 10%";        
+        thName.appendChild(node1);
+
+        var thPos = document.createElement("th");
+        var node2 = document.createTextNode("toelichting");
+        thPos.style.cssText = "pull: left; margin-left: 10%";
+        thPos.appendChild(node2);
+        
+        tr.appendChild(thName);
+        tr.appendChild(thPos);
+        table.appendChild(tr);
+        card.appendChild(table);
+        div.appendChild(card);       
     }
-
-    var pos1 = document.getElementById("position1");
-    var pos2 = document.getElementById("position2");
-    var pos3 = document.getElementById("position3");
-
-    subjects[pageCount].parties.forEach(option => {
-        var opin_tr = document.createElement("tr");
-
-        var name = document.createElement("th");
-        var nameNode = document.createTextNode(option.name);
-        name.appendChild(nameNode);
-        opin_tr.appendChild(name);
-
-        var position = document.createElement("th");
-        var positionNode = document.createTextNode(option.position);
-        position.appendChild(positionNode);
-        opin_tr.appendChild(position);
-
-        var explanation = document.createElement("th");
-        var explanationNode = document.createTextNode(option.explanation);
-        explanation.appendChild(explanationNode);
-        opin_tr.appendChild(explanation);
-
-        if(option.position == "pro"){
-            pos1.appendChild(opin_tr);
-        }else if(option.position == "contra"){
-            pos3.appendChild(opin_tr);
+    var card1 = document.getElementById("position1");
+    card1.style.cssText = "margin-right: 4%; width: 48%; height:100%; overflow: auto;";
+        
+    var card2 = document.getElementById("position2");
+    card2.style.cssText = "width: 48%; height:100%; overflow: auto;";
+    
+    subjects[pageCount].parties.forEach(partie => {
+        var th1 = document.createElement("th");
+        var node1 = document.createTextNode(partie.name);
+        var th2 = document.createElement("th");
+        var node2 = document.createTextNode(partie.position);
+        if(node2 == "pro"){
+            node2 = "eens"
         }else{
-            pos2.appendChild(opin_tr);
+            node2 = "oneens"
         }
         
     });
+
+
 }
 
 

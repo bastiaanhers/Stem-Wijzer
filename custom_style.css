@@ -3,8 +3,8 @@
 .eens{color:#fff!important;background-color:#4CAF50!important};
 .skip{color:#fff!important;background-color:#000!important};
 .pos{
-    width: 150px;
-    height: 150px;
-    overflow: auto;
-    margin-right: 50px;
+    width: 150px!important;
+    height: 150px!important;
+    overflow: auto!important;
+    margin-right: 50px!important;
 };

@@ -1,6 +1,6 @@
 var page = document.getElementById("main");
 var pageCount = 0;
-var options = ["eens", "oneens", "geenVanBeide", "skip"];
+var options = ["eens","geenVanBeide", "oneens",  "skip"];
 var results = [];
 
 
@@ -10,7 +10,8 @@ function clearPage(){
 
 function buildResultPage(){
     clearPage();
-    ResultPageShow();
+    
+    
 
 }
 
@@ -23,13 +24,14 @@ function buildStatement(){
     options.forEach(option => {
         buttonShow(option);
     });
-    opinionShow();
+    //opinionShow();
 }
 
 function back(){
     pageCount--;
+    results.splice (pageCount,pageCount);
     buildStatement();
-
+    
 }
 
 function clicked(event){
@@ -42,7 +44,8 @@ function clicked(event){
     }else{
         buildResultPage();
     }
-    
+    // console.log(results);
     buildStatement();
-    console.log(results);
+    
+
 }
