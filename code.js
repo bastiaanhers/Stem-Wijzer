@@ -26,7 +26,6 @@ function buildStatement(){
     });
     //opinionShow();
 }
-
 function back(){
     pageCount--;
     results.splice (pageCount,pageCount);
