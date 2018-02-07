@@ -18,8 +18,45 @@ function resultPageShow(){
 }
 
 function opinionShow(){
+
+    for(var i = 1; i < 4; i++){
+        var pos = document.createElement("table");
+        pos.setAttribute("class", "w3-table-all w3-light-grey pos");
+        pos.setAttribute("id", "position".concat(i));
+        page.appendChild(pos);
+         
+    }
+
+    var pos1 = document.getElementById("position1");
+    var pos2 = document.getElementById("position2");
+    var pos3 = document.getElementById("position3");
+
     subjects[pageCount].parties.forEach(option => {
-        console.log(option);
+        var opin_tr = document.createElement("tr");
+
+        var name = document.createElement("th");
+        var nameNode = document.createTextNode(option.name);
+        name.appendChild(nameNode);
+        opin_tr.appendChild(name);
+
+        var position = document.createElement("th");
+        var positionNode = document.createTextNode(option.position);
+        position.appendChild(positionNode);
+        opin_tr.appendChild(position);
+
+        var explanation = document.createElement("th");
+        var explanationNode = document.createTextNode(option.explanation);
+        explanation.appendChild(explanationNode);
+        opin_tr.appendChild(explanation);
+
+        if(option.position == "pro"){
+            pos1.appendChild(opin_tr);
+        }else if(option.position == "contra"){
+            pos3.appendChild(opin_tr);
+        }else{
+            pos2.appendChild(opin_tr);
+        }
+        
     });
 }
 
