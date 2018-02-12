@@ -7,24 +7,30 @@ var results = [];
 function clearPage(){
     page.innerHTML = "";
 }
+function buildSkipped(){
+    clearPage();
+    skippedShow();
+
+
+}
 
 function buildResultPage(){
     clearPage();
     
-    
 
 }
 
-function buildStatement(){
+function buildStatement(pageNumb){
     clearPage();
     if(pageCount >= 1){
-        backButtonShow(pageCount);
+        backButtonShow(pageNumb);
     };
-    statementShow();
+    statementShow(pageNumb);
     options.forEach(option => {
-        buttonShow(option);
+        buttonShow(option, pageNumb);
     });
     //opinionShow();
+    
 }
 function back(){
     pageCount--;
@@ -35,16 +41,18 @@ function back(){
 
 function clicked(event){
     var data = event.target.choice;
+    var pageNumb = event.target.numb;
 
-    if(pageCount <  subjects.length - 1 ){
-        var antwoord = {statement:pageCount, anwser:data};
+    if(pageNumb <  subjects.length - 1 ){
+        var antwoord = {statement:pageNumb, anwser:data};
         results.push(antwoord);
         pageCount ++;
+        buildStatement(pageNumb);      
     }else{
-        buildResultPage();
+        buildSkipped();
     }
-    // console.log(results);
-    buildStatement();
+    console.log(pageNumb);
+    console.log(data);
     
 
 }
