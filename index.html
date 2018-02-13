@@ -3,20 +3,43 @@
     <link rel="stylesheet" href="custom_style.css">
 </head>
 <body>
-    <div class="w3-container">        
-        <div class="w3-panel w3-padding-large w3-card-4 w3-white">
-            <div class="w3-container" id="main" style="height:90%">
-                <header>
-                    <h1 id="title">Stemwijzer</h1>
-                    <p id="statement">druk op start om te beginnen</p>
-                </header>
-                <div>
-                    <button class="w3-display-middle w3-button w3-teal" onclick="buildStatement()">Start!</button>                    
-                </div>
+    <div class="w3-container w3-panel w3-padding-large w3-card-4 w3-white">
+        <!-- start page -->
+        <div class="w3-container" id="page" style="height:90%; display:block;">
+            <header>
+                <h1 id="title">Stemwijzer</h1>
+                <p id="statement">druk op start om te beginnen</p>
+            </header>
+            <div>
+                <button class="w3-display-middle w3-button w3-teal" onclick="buildStatement()">Start!</button>                    
             </div>
         </div>
-    </div>
-                
+        <!-- statement page -->
+        <div class="w3-container" id="statementPage" style="height: 90%; display: none;">
+            <div id="backButton" style="display: none;">
+                <button class="w3-button w3-light-grey w3-margin" onclick="back()">terug</button>
+            </div>
+            <div id="statement">
+                <h1 id="titleText"></h1>
+                <p id="statementText"></p>
+            </div>
+            <div id="buttons">
+                <button class="w3-button w3-teal w3-margin" onclick="clicked('eens')">eens</button>
+                <button class="w3-button w3-teal w3-margin" onclick="clicked('geenVanBeide')">geen van beide</button>        
+                <button class="w3-button w3-teal w3-margin" onclick="clicked('oneens')">oneens</button>
+                <button class="w3-button w3-teal w3-margin" onclick="clicked('skip')">skip</button>
+            </div>
+        </div>
+        <!-- results page -->
+        <div class="w3-container" id="resultsPage" style="height: 90%; display: none;">
+            <div id="statementResults">
+
+            </div>
+            <div id="partijkeuze">
+
+            </div>
+        </div>
+    </div>         
 </body>
 <script src="http://stemwijzer.dvc-icta.nl/data.js"></script>
 <script src="pageConstructors.js"></script>
