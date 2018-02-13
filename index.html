@@ -24,21 +24,28 @@
                 <p id="statementText"></p>
             </div>
             <div id="buttons">
-                <button class="w3-button w3-teal w3-margin" onclick="clicked('eens')">eens</button>
-                <button class="w3-button w3-teal w3-margin" onclick="clicked('geenVanBeide')">geen van beide</button>        
-                <button class="w3-button w3-teal w3-margin" onclick="clicked('oneens')">oneens</button>
-                <button class="w3-button w3-teal w3-margin" onclick="clicked('skip')">skip</button>
+                <button id="but1" class="w3-button w3-teal w3-margin" onclick="clicked('eens')">eens</button>
+                <button id="but2" class="w3-button w3-teal w3-margin" onclick="clicked('geenVanBeide')">geen van beide</button>        
+                <button id="but3" class="w3-button w3-teal w3-margin" onclick="clicked('oneens')">oneens</button>
+                <button id="but4" class="w3-button w3-teal w3-margin" onclick="clicked('skip')">skip</button>
+            </div>
+            <div id="naarUitslag">
+                <button id="granted" class="w3-button w3-blue w3-margin" style="display: none;" onclick="buildResults()">naar de uitslag</button>
+                <button id="blocked" class="w3-button w3-grey w3-margin" style="display: none;">naar de uitslag</button>
             </div>
         </div>
         <!-- results page -->
         <div class="w3-container" id="resultsPage" style="height: 90%; display: none;">
+            <h1>resultaten</h1>
             <div id="statementResults">
-
+                <!-- regeld javascript in code.js -->
             </div>
             <div id="partijkeuze">
-
+                <br><br><br>
+                <h2>kies welke partijen</h2>
             </div>
         </div>
+
     </div>         
 </body>
 <script src="http://stemwijzer.dvc-icta.nl/data.js"></script>
