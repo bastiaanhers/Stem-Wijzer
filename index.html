@@ -24,9 +24,9 @@
                 <p id="statementText"></p>
             </div>
             <div id="buttons">
-                <button id="but1" class="w3-button w3-teal w3-margin" onclick="clicked('eens')">eens</button>
-                <button id="but2" class="w3-button w3-teal w3-margin" onclick="clicked('geenVanBeide')">geen van beide</button>        
-                <button id="but3" class="w3-button w3-teal w3-margin" onclick="clicked('oneens')">oneens</button>
+                <button id="but1" class="w3-button w3-teal w3-margin" onclick="clicked('pro')">eens</button>
+                <button id="but2" class="w3-button w3-teal w3-margin" onclick="clicked('ambivalent')">geen van beide</button>        
+                <button id="but3" class="w3-button w3-teal w3-margin" onclick="clicked('contra')">oneens</button>
                 <button id="but4" class="w3-button w3-teal w3-margin" onclick="clicked('skip')">skip</button>
             </div>
             <input type="checkbox" name="belang" value="belang" id="belang">deze stelling weegt meer mee<br>   
@@ -49,7 +49,7 @@
             </div>
             <div id="eindButtonGranted" style="display: none;">
                     <h3 id="eindButtonText">u kunt nu doorgaan naar het eindresultaat</h3>                
-                <button id="eindButton" class="w3-button w3-green w3-margin" onclick="endResult()">naar het eind resultaat</button>
+                <button id="eindButton" class="w3-button w3-green w3-margin" onclick="endResultino()">naar het eind resultaat</button>
             </div>
             <div id="eindButtonBlocked" style="display: block;">
                 <h3 id="eindButtonText">nog niet alle vragen zijn ingevuld</h3>
@@ -59,9 +59,9 @@
         <!-- endresults page -->
         <div class="w3-container" id="endResult" style="height: 90%; display: none;">
             <h1>resultaten</h1>
-            <ul id="top5">
+            <ol id="top5">
 
-            </ul>
+            </ol>
         </div>
     </div>         
 </body>

@@ -30,6 +30,7 @@ var results = [];
 //end result page
 var endResult = document.getElementById("endResult");
 var belang = document.getElementById("belang");
+var top5 = document.getElementById("top5");
 
 //show the statement page
 function buildStatement(event){
@@ -70,15 +71,15 @@ function buildStatement(event){
     //change color if already selected
     if(results[pageNumb]){
         switch(results[pageNumb].anwser) {
-            case "eens":
+            case "pro":
                 button1.setAttribute("class", "w3-button w3-green w3-margin");
                
             break;
-            case "geenVanBeide":
+            case "ambivalent":
                 button2.setAttribute("class", "w3-button w3-green w3-margin");
                
                 break;
-            case "oneens":
+            case "contra":
                 button3.setAttribute("class", "w3-button w3-green w3-margin");
             break;
             case "skip":
@@ -140,7 +141,73 @@ function buildResults(){
         }
     
     });
-};   
+};  
+
+function endResultino(){
+    var partijen = [];
+    //verander pagina
+    resultsPage.style.display = "none";
+    endResult.style.display = "block";
+
+    // look at selected options and save if true
+    parties.forEach(partij => {
+        if(sec == true){
+            if(partij.secular == true){
+                var partie = {name:partij.name, weight:0, points:0};
+                partijen.push(partie);
+            }
+        }else{}
+
+        if(reg == true){
+            if(partij.secular == false){
+                var partie = {name:partij.name, weight:0, points:0};
+                partijen.push(partie);                
+            }
+        }else{}    
+    });
+    results.forEach(result =>{
+        subjects[result.statement].parties.forEach(partie =>{
+            partijen.forEach(partij =>{
+                if(partie.position == result.anwser){
+                    if(partie.name == partij.name){
+                        if(result.weight == true){
+                            partij.points = partij.points + 1.5;
+                        }else{
+                            partij.points++;
+                        }
+                    }
+                }
+            })
+        });
+    });
+    partijen.sort(function(a, b) {
+        var pointsA = a.points;
+        var pointsB = b.points;
+        if (pointsA < pointsB) {
+          return 1;
+        }
+        if (pointsA > pointsB) {
+          return -1;
+        }
+      
+        // names must be equal
+        return 0;
+      });
+    for(var i = 0; i < 5; i++){
+        var li = document.createElement("li");
+        var node = document.createTextNode(partijen[i].name);
+        li.appendChild(node);
+        top5.appendChild(li);
+        console.log(partijen[i].name);
+    }
+    // maak array met alle partijen !!
+    // check bij elke vraag of een partij een punt krijgt!!
+    // keer het punt als hij meer gewicht!!
+    // pak de 5 partijen met de hoogste scoren!! 
+    // maat li met partij voor de pagina
+
+
+};
 
 regCheckbox.onchange  = function changeLink() {
     if(regCheckbox.checked || secCheckbox.checked){
@@ -156,6 +223,7 @@ regCheckbox.onchange  = function changeLink() {
         }
         
 };
+
 secCheckbox.onchange  = function changeLink() {
     if(regCheckbox.checked || secCheckbox.checked){
         if(ready == true){
@@ -170,40 +238,11 @@ secCheckbox.onchange  = function changeLink() {
         }
        
 };
-function endResult(){
-    var partijen = []; 
-    //verander pagina
-    resultsPage.style.display = "none";
-    endResult.style.display = "block";
 
-    // look at selected options and save if true
-    parties.forEach(partij => {
-        if(sec == true){
-            if(partij.secular == true){
-                var partie = {name:parij.name, weight:0};
-                partijen.push(partij);
-            }
-        }
-        if(reg == true){
-            if(partij.sucular == false){
-                var partie = {name:parij.name, weight:0};
-                partijen.push(partij);                
-            }
-        }
-    });
-
-    // maak array met alle partijen
-    // check bij elke vraag of een partij een punt krijgt
-    // keer het punt als hij meer gewicht
-    // pak de 5 partijen met de hoogste scoren 
-    // maat li met partij voor de pagina
-
-
-}
 function back(){
     pageNumb = pageNumb - 2;
     buildStatement();
-}
+};
 
 function clicked(choice){
         //delete result if exists
@@ -226,4 +265,4 @@ function clicked(choice){
         buildStatement();
     }
     console.dir(results);
-}
+};
