@@ -29,6 +29,7 @@
                 <button id="but3" class="w3-button w3-teal w3-margin" onclick="clicked('oneens')">oneens</button>
                 <button id="but4" class="w3-button w3-teal w3-margin" onclick="clicked('skip')">skip</button>
             </div>
+            <input type="checkbox" name="belang" value="belang" id="belang">deze stelling weegt meer mee<br>   
             <div id="naarUitslag">
                 <button id="granted" class="w3-button w3-blue w3-margin" style="display: none;" onclick="buildResults()">naar de uitslag</button>
                 <button id="blocked" class="w3-button w3-grey w3-margin" style="display: none;">naar de uitslag</button>
@@ -36,7 +37,7 @@
         </div>
         <!-- results page -->
         <div class="w3-container" id="resultsPage" style="height: 90%; display: none;">
-            <h1>resultaten</h1>
+            <h1>vragen</h1>
             <div id="statementResults">
                 <!-- regeld javascript in code.js -->
             </div>
@@ -51,11 +52,17 @@
                 <button id="eindButton" class="w3-button w3-green w3-margin" onclick="endResult()">naar het eind resultaat</button>
             </div>
             <div id="eindButtonBlocked" style="display: block;">
-                <h3 id="eindButtonText">nog niet alle vragen zijn beantwoord</h3>
+                <h3 id="eindButtonText">nog niet alle vragen zijn ingevuld</h3>
                 <button id="eindButton1" class="w3-button w3-grey w3-margin" onclick="">naar het eind resultaat</button>
             </div>
         </div>
+        <!-- endresults page -->
+        <div class="w3-container" id="endResult" style="height: 90%; display: none;">
+            <h1>resultaten</h1>
+            <ul id="top5">
 
+            </ul>
+        </div>
     </div>         
 </body>
 <script src="http://stemwijzer.dvc-icta.nl/data.js"></script>

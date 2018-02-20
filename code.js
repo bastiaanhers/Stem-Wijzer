@@ -1,4 +1,8 @@
 var pageNumb = -1;
+var ready = false;
+var weight = false;
+var reg = false;
+var sec = false;
 //start page element
 var page = document.getElementById("page");
 //statement page element
@@ -8,6 +12,7 @@ var titleText = document.getElementById("titleText");
 var statementText = document.getElementById("statementText");
 //result page
 var resultsPage = document.getElementById("resultsPage");
+var skipText = document.getElementById("skipText");
 //button elements
 var button1 = document.getElementById("but1");
 var button2 = document.getElementById("but2");
@@ -22,9 +27,14 @@ var regCheckbox = document.querySelector('input[value="reg"]');
 var secCheckbox = document.querySelector('input[value="sec"]');
 //array with all results
 var results = [];
+//end result page
+var endResult = document.getElementById("endResult");
+var belang = document.getElementById("belang");
 
 //show the statement page
 function buildStatement(event){
+    weight = false;
+    belang.checked = false;
     // hide elements
     resultsPage.style.display = "none";
     blocked.style.display = "none";
@@ -62,11 +72,11 @@ function buildStatement(event){
         switch(results[pageNumb].anwser) {
             case "eens":
                 button1.setAttribute("class", "w3-button w3-green w3-margin");
-                console.log("eens");
+               
             break;
             case "geenVanBeide":
                 button2.setAttribute("class", "w3-button w3-green w3-margin");
-                console.log("geen van beide");
+               
                 break;
             case "oneens":
                 button3.setAttribute("class", "w3-button w3-green w3-margin");
@@ -74,8 +84,7 @@ function buildStatement(event){
             case "skip":
                 button4.setAttribute("class", "w3-button w3-red w3-margin");
             break;
-        }
-        console.log(pageNumb);
+        }  
     }
     //if all the anwsers are given show button to result page;
     if(results.length >= subjects.length){
@@ -85,12 +94,18 @@ function buildStatement(event){
         }else{
             granted.style.display = "block";
         }
-        console.dir(result);
     }
 }
-
+belang.onchange  = function weightTrue() {
+    if(belang.checked){
+        weight = true;
+        }else{
+        weight = false;
+        }
+};
 
 function buildResults(){
+    ready = false;
     //change page
     statementPage.style.display = "none";
     resultsPage.style.display = "block";
@@ -116,36 +131,75 @@ function buildResults(){
         but = document.getElementById(numb);
         but.innerHTML = numb;
     });
+    //checks if no anwser is skipped if so block the next button
+    results.forEach(result => {
+        if(result.anwser !== "skip"){
+            ready = true;
+        }else{
+            ready = false;
+        }
+    
+    });
 };   
 
-regCheckbox.onchange = function changeLink() {
-    if(regCheckbox.checked){
+regCheckbox.onchange  = function changeLink() {
+    if(regCheckbox.checked || secCheckbox.checked){
+        if(ready == true){
         eindBlocked.style.display = "none";
         eindGranted.style.display = "block";
-        } else if(secCheckbox.checked) {
-        eindBlocked.style.diplay = "block";
-        eindGranted.style.display = "none";
+        reg = true;
+        }
         }else{
             eindBlocked.style.display = "block";
             eindGranted.style.display = "none";
+            reg = false;
         }
- 
+        
 };
-secCheckbox.onchange = function changeLink() {
-    if(regCheckbox.checked){
-        eindBlocked.style.display = "none";
-        eindGranted.style.display = "block";
-        } else if(secCheckbox.checked) {
-        eindBlocked.style.diplay = "block";
-        eindGranted.style.display = "none";
+secCheckbox.onchange  = function changeLink() {
+    if(regCheckbox.checked || secCheckbox.checked){
+        if(ready == true){
+            eindBlocked.style.display = "none";
+            eindGranted.style.display = "block";
+            sec = true;
+        }
         }else{
             eindBlocked.style.display = "block";
             eindGranted.style.display = "none";
+            sec = false;
         }
-
+       
 };
+function endResult(){
+    var partijen = []; 
+    //verander pagina
+    resultsPage.style.display = "none";
+    endResult.style.display = "block";
+
+    // look at selected options and save if true
+    parties.forEach(partij => {
+        if(sec == true){
+            if(partij.secular == true){
+                var partie = {name:parij.name, weight:0};
+                partijen.push(partij);
+            }
+        }
+        if(reg == true){
+            if(partij.sucular == false){
+                var partie = {name:parij.name, weight:0};
+                partijen.push(partij);                
+            }
+        }
+    });
+
+    // maak array met alle partijen
+    // check bij elke vraag of een partij een punt krijgt
+    // keer het punt als hij meer gewicht
+    // pak de 5 partijen met de hoogste scoren 
+    // maat li met partij voor de pagina
 
 
+}
 function back(){
     pageNumb = pageNumb - 2;
     buildStatement();
@@ -159,17 +213,17 @@ function clicked(choice){
         }
 
         //save given result
-        var antwoord = {statement:pageNumb, anwser:choice};
+        var antwoord = {statement:pageNumb, anwser:choice, weight:weight};
         results.push(antwoord);
         results.sort(function(a, b){return a.statement - b.statement});
         
 
     // show result if all anwers are given else show next statement
-    console.log(subjects);
      if(pageNumb >= subjects.length -1){
         results.sort(function(a, b){return a.statement - b.statement});
         buildResults(); 
     }else{
         buildStatement();
     }
+    console.dir(results);
 }
