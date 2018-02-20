@@ -1,4 +1,55 @@
+(function() {
+    var jsonData = {};
 
+    function loadJsonData() {
+        var jsonDataUrl = "data.json";
+
+        var request = new XMLHttpRequest();
+        request.open('GET', jsonDataUrl);
+        request.send();
+
+        request.onload = function() {
+          jsonData = request.response;
+          console.dir(jsonData);
+        }
+    }
+
+
+
+    
+    //checked of de data goe id aangekomen
+    function status(response) {
+        if (response.status >= 200 && response.status < 300) {
+            return Promise.resolve(response)
+        } else {
+            return Promise.reject(new Error(response.statusText))
+        }
+    }
+    //haald de data op
+    function json(response) {
+        return response.json()
+    }
+    //maakt de connectie met de server 
+    fetch('data.json')
+        .then(status)
+        .then(json)
+        //javascript gaat door maar deze function wacht op de response
+        .then(function(data) {
+            console.log('Request succeeded with JSON response', data);
+            jsonData = data;
+        })
+        
+        .catch(function(error) {
+            console.log('Request failed', error);
+        });
+    
+        console.dir(jsonData);
+    //wordt gereserveerd, na dat de javascript klaar is start een event en na 1 ms krijgt hij een response en voert hij zichzelf uit
+    setTimeout(function(){ 
+        console.dir(jsonData);
+    }, 1);
+
+})();
 // function resultPageShow(){
 //     results.forEach
 

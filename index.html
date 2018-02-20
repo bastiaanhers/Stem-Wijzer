@@ -43,13 +43,23 @@
             <div id="partijkeuze">
                 <br><br><br>
                 <h2>kies welke partijen</h2>
+                <input type="checkbox" name="reguliere" value="reg" id="reg">reguliere partijen<br>
+                <input type="checkbox" name="seculiere" value="sec" id="sec">seculiere partijen 
+            </div>
+            <div id="eindButtonGranted" style="display: none;">
+                    <h3 id="eindButtonText">u kunt nu doorgaan naar het eindresultaat</h3>                
+                <button id="eindButton" class="w3-button w3-green w3-margin" onclick="endResult()">naar het eind resultaat</button>
+            </div>
+            <div id="eindButtonBlocked" style="display: block;">
+                <h3 id="eindButtonText">nog niet alle vragen zijn beantwoord</h3>
+                <button id="eindButton1" class="w3-button w3-grey w3-margin" onclick="">naar het eind resultaat</button>
             </div>
         </div>
 
     </div>         
 </body>
 <script src="http://stemwijzer.dvc-icta.nl/data.js"></script>
-<script src="pageConstructors.js"></script>
+<!-- <script src="pageConstructors.js"></script> -->
 <script src="code.js"></script>
 
     

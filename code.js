@@ -15,10 +15,15 @@ var button3 = document.getElementById("but3");
 var button4 = document.getElementById("but4");
 var granted = document.getElementById("granted");
 var blocked = document.getElementById("blocked");
-
+//elements regulier en seculier checkbox
+var eindBlocked = document.getElementById("eindButtonBlocked");
+var eindGranted = document.getElementById("eindButtonGranted");   
+var regCheckbox = document.querySelector('input[value="reg"]');
+var secCheckbox = document.querySelector('input[value="sec"]');
+//array with all results
 var results = [];
 
-
+//show the statement page
 function buildStatement(event){
     // hide elements
     resultsPage.style.display = "none";
@@ -111,7 +116,34 @@ function buildResults(){
         but = document.getElementById(numb);
         but.innerHTML = numb;
     });
-}
+};   
+
+regCheckbox.onchange = function changeLink() {
+    if(regCheckbox.checked){
+        eindBlocked.style.display = "none";
+        eindGranted.style.display = "block";
+        } else if(secCheckbox.checked) {
+        eindBlocked.style.diplay = "block";
+        eindGranted.style.display = "none";
+        }else{
+            eindBlocked.style.display = "block";
+            eindGranted.style.display = "none";
+        }
+ 
+};
+secCheckbox.onchange = function changeLink() {
+    if(regCheckbox.checked){
+        eindBlocked.style.display = "none";
+        eindGranted.style.display = "block";
+        } else if(secCheckbox.checked) {
+        eindBlocked.style.diplay = "block";
+        eindGranted.style.display = "none";
+        }else{
+            eindBlocked.style.display = "block";
+            eindGranted.style.display = "none";
+        }
+
+};
 
 
 function back(){
